@@ -50,7 +50,7 @@
   .imgContainer{
   	position: relative;
   	width: 90%;
-  	height: 50px;
+  	height: 300px;
   }
 
   img{
@@ -59,7 +59,7 @@
 
   .imgDescription{
   	width: 100%;
-  	height: inherit;
+  	height: 50px;
   	position: absolute;
   	top: 0;
   	display: none;
