@@ -8,6 +8,7 @@ border-radius: 5%;
 }
 *{
 	box-sizing: border-box;
+	/*exercise 2.3.6
 	/*font-size: 14px !important;*/
 }
 header{
@@ -90,11 +91,16 @@ aside{
 	height: inherit;
 }
 /*
+ exercise 2.3.4
 [class$="r"]{
 	background-color: magenta;
 }
-
+exercise 2.3.5
 [class*="a"]:not([class$="r"]){
 	background-color: blue;
+}
+excercise 2.3.7
+.oh-no-inline-styles{
+	background: green !important;
 }
 */
