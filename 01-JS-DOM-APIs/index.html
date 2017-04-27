@@ -120,7 +120,7 @@
         	</article>
         </section>
         <section>
-        search: <input type="text" class="search"><button class="searchButton">Go<button>
+        search: <input type="text" class="search"><button class="searchButton">Go</button>
         </section>
         <script>
         var searchButton = document.body.getElementsByClassName("searchButton")[0];
@@ -165,7 +165,9 @@
     	hiddenSection.style.opacity = 1;
     	});
         </script>
-
+        <section class = "Table">
+        	
+        </section>
         <footer>
         	Random footer
         </footer>
@@ -175,6 +177,29 @@
   });
   //getURL("invalid url", logResponse);
   getURL("https://api.github.com/search/repositories?q='javaScript", createList);
+</script>
+<script>
+	var items = [
+  [1, 2, 43, 503, 99],
+  [3, 4, 434, 4234, 93],
+  [5, 6, 123, 0, 1],
+  [3,1,1,1,1]
+];
+	function printTable(matrix, whereToInsert){
+
+		var table = document.createElement("table");
+		whereToInsert.appendChild(table);
+		for(var i = 0; i < matrix.length; i++ ){
+			var row = document.createElement("tr");
+			table.appendChild(row);
+			for(var j = 0; j < matrix[i].length; j++){
+				var cell = document.createElement("td");
+				row.appendChild(cell);
+				cell.textContent = matrix[i][j].toString()
+			}
+		}
+	}
+	printTable(items, document.getElementsByClassName("Table")[0]);
 </script>
 
         <!--<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
