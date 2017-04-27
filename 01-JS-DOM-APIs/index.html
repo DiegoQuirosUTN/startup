@@ -21,22 +21,32 @@
         <script>
 		var getURL = function(url, callback) {
  		 var req = new XMLHttpRequest();
+ 		 
  		 req.open("GET", url, true);
-  		req.addEventListener("load", function() {
-    		if (req.status = 200)
-      		callback(JSON.parse(req.responseText));
+  		req.addEventListener("load", function(event) {
+  			console.log(req.status);
+    		if (req.status == 200){
+    			event.stopPropagation();
+    			callback(JSON.parse(req.responseText));
+    		}
+      		
    		 else
+   		 {
       		changeSectionsToRed();
-      		console.log(error1);
       		callback(null, new Error("Request failed: " +
                          req.statusText));
+      	}
   		});
-  		changeSectionsToRed();
+  		
   		req.addEventListener("error", function() {
+  			changeSectionsToRed();
     		callback(null, new Error("Network error"));
   		});
+  		
  		 req.send(null);
+ 		
 		}
+
 		function changeSectionsToRed(){
 			for(var i=0; i < document.body.getElementsByTagName("section").length ; i++){
 				document.body.getElementsByTagName("section")[i].style.color = "red";
@@ -54,7 +64,21 @@
 			console.log(reqs);
 			console.log("message recived");
 		};
-		getURL("https://api.github.com/search/repositories?q='javaScript", logResponse);
+
+		var createList = function(reqst){
+			var sectionElement = document.createElement("section");
+			var ul = document.createElement("ul");
+			ul.textContent = "repositories:";
+			document.body.appendChild(sectionElement);
+			sectionElement.appendChild(ul);
+				for(var i=0; i < reqst.items.length; i++){
+					var li = document.createElement("li");
+					ul.appendChild(li);
+					li.textContent = reqst.items[i].full_name;
+				}
+		}
+
+		
 
         </script>
         <header>
@@ -116,7 +140,8 @@
   window.addEventListener("load", function(event) {
     console.log("All resources finished loading!");
   });
-  getURL("invalid url", logResponse);
+  //getURL("invalid url", logResponse);
+  getURL("https://api.github.com/search/repositories?q='javaScript", createList);
 </script>
 
         <!--<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
