@@ -106,15 +106,17 @@ article{
 	padding: 10px;
 	height: inherit;
 }
-/*
- exercise 2.3.4
+
+ 
 [class$="r"]{
 	background-color: magenta;
 }
-exercise 2.3.5
+
 [class*="a"]:not([class$="r"]){
 	background-color: blue;
 }
+
+/*
 excercise 2.3.7
 .oh-no-inline-styles{
 	background: green !important;
