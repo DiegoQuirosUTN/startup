@@ -18,7 +18,31 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
+        <script>
+		var getURL = function(url, callback) {
+ 		 var req = new XMLHttpRequest();
+ 		 req.open("GET", url, true);
+  		req.addEventListener("load", function() {
+    		if (req.status < 400)
+      		callback(JSON.parse(req.responseText));
+   		 else
+      		callback(null, new Error("Request failed: " +
+                               req.statusText));
+  		});
+  		req.addEventListener("error", function() {
+    		callback(null, new Error("Network error"));
+  		});
+ 		 req.send(null);
+		}
+		/*
+		//Test for the getURL function
+		var logResponse = function(reqs){
+			console.log(reqs.value.joke);
+			console.log("message recived");
+		};
+		getURL("http://api.icndb.com/jokes/random", logResponse);
+		*/
+        </script>
         <header>
         	<h1>Random Title</h1>
         	<ul>
