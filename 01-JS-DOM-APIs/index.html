@@ -67,6 +67,7 @@
 
 		var createList = function(reqst){
 			var sectionElement = document.createElement("section");
+			sectionElement.classList.add("searchResults");
 			var ul = document.createElement("ul");
 			ul.textContent = "repositories:";
 			document.body.appendChild(sectionElement);
@@ -118,6 +119,38 @@
         		Random article
         	</article>
         </section>
+        <section>
+        search: <input type="text" class="search"><button class="searchButton">Go<button>
+        </section>
+        <script>
+        var searchButton = document.body.getElementsByClassName("searchButton")[0];
+        
+
+        var createSearchList = function(reqst){
+        	document.body.removeChild(document.body.getElementsByClassName("searchResults")[0])
+			var sectionElement = document.createElement("section");
+			sectionElement.classList.add("searchResults");
+			var ul = document.createElement("ul");
+			var searchValue = document.body.getElementsByClassName("search")[0].value;
+			ul.textContent = "repositories:";
+			document.body.appendChild(sectionElement);
+			sectionElement.appendChild(ul);
+				for(var i=0; i < reqst.items.length; i++){
+					if(reqst.items[i].full_name.toLowerCase().includes(searchValue.toLowerCase())){
+						var li = document.createElement("li");
+						ul.appendChild(li);
+						li.textContent = reqst.items[i].full_name;
+					}
+				}
+		}
+
+        function getData(event){
+        	getURL("https://api.github.com/search/repositories?q='javaScript", createSearchList);
+        }
+
+        searchButton.addEventListener("click",getData);
+        </script>
+
         <!--<script>
         var hiddenSection = document.body.getElementsByClassName("hidden")[0];
         hiddenSection.addEventListener("load", function(event) {
