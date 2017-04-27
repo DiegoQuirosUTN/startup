@@ -23,16 +23,24 @@
  		 var req = new XMLHttpRequest();
  		 req.open("GET", url, true);
   		req.addEventListener("load", function() {
-    		if (req.status < 400)
+    		if (req.status = 200)
       		callback(JSON.parse(req.responseText));
    		 else
+      		changeSectionsToRed();
+      		console.log(error1);
       		callback(null, new Error("Request failed: " +
-                               req.statusText));
+                         req.statusText));
   		});
+  		changeSectionsToRed();
   		req.addEventListener("error", function() {
     		callback(null, new Error("Network error"));
   		});
  		 req.send(null);
+		}
+		function changeSectionsToRed(){
+			for(var i=0; i < document.body.getElementsByTagName("section").length ; i++){
+				document.body.getElementsByTagName("section")[i].style.color = "red";
+			}
 		}
 		/*
 		//Test for the getURL function
@@ -42,6 +50,12 @@
 		};
 		getURL("http://api.icndb.com/jokes/random", logResponse);
 		*/
+		var logResponse = function(reqs){
+			console.log(reqs);
+			console.log("message recived");
+		};
+		getURL("https://api.github.com/search/repositories?q='javaScript", logResponse);
+
         </script>
         <header>
         	<h1>Random Title</h1>
@@ -102,6 +116,7 @@
   window.addEventListener("load", function(event) {
     console.log("All resources finished loading!");
   });
+  getURL("invalid url", logResponse);
 </script>
 
         <!--<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
