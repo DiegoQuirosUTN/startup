@@ -22,27 +22,30 @@
 
 
         <script>
-            var eventPause = new Event('pause');
-            var eventResume = new Event('resume');
-            var eventPlay = new Event('play');
+        'use strict';
 
         function EventEmitter(){
-
+            
          }
 
-         EventEmitter.prototype.on = function(listener, func){
-            document.addEventListener(listener, func);
+         EventEmitter.prototype.on = function(event, func){
+            this.eventList[event] = func;
+            //document.addEventListener(listener, func);
             //console.log("hola")
          }
 
          EventEmitter.prototype.emit = function(event){
-            document.dispatchEvent(event);
+            if(event in this.eventList){
+                this.eventList[event](event);
+            }
+            //document.dispatchEvent(event);
          }
-         EventEmitter.prototype.off = function(){
-            document.removeEventListener(listener);
+         EventEmitter.prototype.off = function(event){
+            delete this.eventList[event];
+            //document.removeEventListener(listener);
          }
 
-
+         //EventEmitter.prototype.eventList = new Map();
      function Movie(title, year, duration) {
         
     this.getTitle = function () {
@@ -69,20 +72,21 @@
         duration = newDuration;
     };
 
-
+    this.eventList = new Map();
     Movie.prototype.play = function(){
         //console.log("playing");
-        this.emit(eventPlay);
+        this.emit("play");
     }
     Movie.prototype.pause = function(){
         //console.log("paused");
-        this.emit(eventPause);
+        this.emit("pause");
     }
     Movie.prototype.resume = function(){
         //console.log("resuming");
-        this.emit(eventResume);
+        this.emit("resume");
     }
 }
+    //Movie.prototype.eventList = new Map();
     Movie.prototype = Object.create(EventEmitter.prototype);
 
     Movie.prototype.constructor = Movie;
@@ -96,12 +100,12 @@
     function Logger(){
     }
     Logger.prototype.log = function(event){
-        console.log(event);
+        console.log("the " + event + " button has been pressed");
     }
 
     var logger = new Logger();
 
-    terminator.on('play', logger.log);
+    terminator.on("play", logger.log);
 
 
         </script>
