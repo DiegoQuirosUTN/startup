@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>Topic 1</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,42 +11,76 @@
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="assets/stylesheets/normalize.css">
-        <link rel="stylesheet" href="assets/stylesheets/1.2.css">
-        
+        <link rel="stylesheet" href="assets/stylesheets/1.2.css"> 
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <script>
-		var getURL = function(url, callback) {
- 		 var req = new XMLHttpRequest();
- 		 
- 		 req.open("GET", url, true);
-  		req.addEventListener("load", function(event) {
-  			console.log(req.status);
-    		if (req.status == 200){
-    			event.stopPropagation();
-    			callback(JSON.parse(req.responseText));
-    		}
-      		
-   		 else
-   		 {
-      		changeSectionsToRed();
-      		callback(null, new Error("Request failed: " +
-                         req.statusText));
-      	}
-  		});
-  		
-  		req.addEventListener("error", function() {
-  			changeSectionsToRed();
-    		callback(null, new Error("Network error"));
-  		});
-  		
- 		 req.send(null);
- 		
-		}
+       
+        <header>
+        	<h1>Random Title</h1>
+        	<ul>
+        		<li>Random list element</li>
+        		<li>Random list element2</li>
+        		<li>Random list element 3 <a href="#">with random link</a></li>
+        	</ul>
+        </header>
+        <section class="hidden" style="opacity:0">
+        		Hello World!
+        </section>
+        <button>boton</button>
+        <section>
+        	<p>Random paragraph</p>
+        	<article>
+        		<header>
+        			<h1>Random article title</h1>
+        		</header>
+        		Random article
+        	</article>
+        </section>
+        <section class = "Table">
+        </section>
 
+        <section>
+        	search: <input type="text" class="search"><button class="searchButton">Go</button>
+        </section>
+        
+        <footer>
+        	Random footer
+        </footer>
+        
+		<script>
+
+		//Exercise 1.7
+
+		var getURL = function(url, callback) {
+ 			var req = new XMLHttpRequest();
+ 		 
+ 			req.open("GET", url, true);
+  			req.addEventListener("load", function(event) {
+  				console.log(req.status);
+    			if (req.status == 200){
+    				event.stopPropagation();
+    				callback(JSON.parse(req.responseText));
+    			}
+      		
+   		 		else
+   		 		{
+      				changeSectionsToRed(); //added for exercise 1.8
+      				callback(null, new Error("Request failed: " + req.statusText));
+      			}
+  			});
+  		
+  			req.addEventListener("error", function() {
+  				changeSectionsToRed(); //added for exercise 1.8
+    			callback(null, new Error("Network error"));
+  			});
+  		
+ 			req.send(null);
+ 		}
+
+ 		// Exercise 1.8
 		function changeSectionsToRed(){
 			for(var i=0; i < document.body.getElementsByTagName("section").length ; i++){
 				document.body.getElementsByTagName("section")[i].style.color = "red";
@@ -79,53 +113,26 @@
 				}
 		}
 
-		
-
-        </script>
-        <header>
-        	<h1>Random Title</h1>
-        	<ul>
-        		<li>Random list element</li>
-        		<li>Random list element2</li>
-        		<li>Random list element 3 <a href="#">with random link</a></li>
-        	</ul>
-        </header>
-        <section class="hidden" style="opacity:0">
-        	Hello World!
-        </section>
-        <button>boton</button>
-        <script>
-        var req = new XMLHttpRequest();
+		// Exercise 1.6
+		var req = new XMLHttpRequest();
         var button = document.body.getElementsByTagName("button")[0];
         function botonApretado(event){
-		req.open("GET", "http://api.icndb.com/jokes/random", true);
-		req.addEventListener("load", function() {
-  		console.log(req.status);
-  		var jason = JSON.parse(req.responseText);
-  		console.log(jason.value.joke);
-  		document.body.getElementsByClassName("hidden")[0].textContent = "Hello World!"+" Joke:"+jason.value.joke;
-  		button.removeEventListener("click", botonApretado);
-		});
+			req.open("GET", "http://api.icndb.com/jokes/random", true);
+			req.addEventListener("load", function() {
+  				console.log(req.status);
+  				var jason = JSON.parse(req.responseText);
+  				console.log(jason.value.joke);
+  				document.body.getElementsByClassName("hidden")[0].textContent = "Hello World!"+" Joke:"+jason.value.joke;
+  				button.removeEventListener("click", botonApretado);
+			});
 		req.send(null);
 		};
         button.addEventListener("click", botonApretado);
-        </script>
-        <section>
-        	<p>Random paragraph</p>
-        	<article>
-        		<header>
-        			<h1>Random article title</h1>
-        		</header>
-        		Random article
-        	</article>
-        </section>
-        <section>
-        search: <input type="text" class="search"><button class="searchButton">Go</button>
-        </section>
-        <script>
-        var searchButton = document.body.getElementsByClassName("searchButton")[0];
-        
 
+
+        // Exercise 1.9-1.10
+		var searchButton = document.body.getElementsByClassName("searchButton")[0];
+       
         var createSearchList = function(reqst){
         	document.body.removeChild(document.body.getElementsByClassName("searchResults")[0])
 			var sectionElement = document.createElement("section");
@@ -149,57 +156,45 @@
         }
 
         searchButton.addEventListener("click",getData);
-        </script>
 
-        <!--<script>
-        var hiddenSection = document.body.getElementsByClassName("hidden")[0];
-        hiddenSection.addEventListener("load", function(event) {
-    	event.target.style.display = "block";
-    	event.target.style.opacity = 1;
-    	});
-        </script> -->
-        <script>
-        var hiddenSection = document.body.getElementsByClassName("hidden")[0];
+
+        //exercise 1.4
+ 		var hiddenSection = document.body.getElementsByClassName("hidden")[0];
         window.addEventListener("load", function(event) {
-    	hiddenSection.style.display = "block";
-    	hiddenSection.style.opacity = 1;
+    		hiddenSection.style.display = "block";
+    		hiddenSection.style.opacity = 1;
     	});
-        </script>
-        <section class = "Table">
-        	
-        </section>
-        <footer>
-        	Random footer
-        </footer>
-        <script>
-  window.addEventListener("load", function(event) {
-    console.log("All resources finished loading!");
-  });
-  //getURL("invalid url", logResponse);
-  getURL("https://api.github.com/search/repositories?q='javaScript", createList);
-</script>
-<script>
-	var items = [
-  [1, 2, 43, 503, 99],
-  [3, 4, 434, 4234, 93],
-  [5, 6, 123, 0, 1],
-  [3,1,1,1,1]
-];
-	function printTable(matrix, whereToInsert){
 
-		var table = document.createElement("table");
-		whereToInsert.appendChild(table);
-		for(var i = 0; i < matrix.length; i++ ){
-			var row = document.createElement("tr");
-			table.appendChild(row);
-			for(var j = 0; j < matrix[i].length; j++){
-				var cell = document.createElement("td");
-				row.appendChild(cell);
-				cell.textContent = matrix[i][j].toString()
+ 		window.addEventListener("load", function(event) {
+    		console.log("All resources finished loading!");
+  		});
+  		//getURL("invalid url", logResponse);
+  		
+  		getURL("https://api.github.com/search/repositories?q='javaScript", createList);
+
+
+  		//Exercise 1.12
+		var items = [
+  		[1, 2, 43, 503, 99],
+  		[3, 4, 434, 4234, 93],
+  		[5, 6, 123, 0, 1],
+  		[3,1,1,1,1]
+		];
+
+		function printTable(matrix, whereToInsert){
+			var table = document.createElement("table");
+			whereToInsert.appendChild(table);
+			for(var i = 0; i < matrix.length; i++ ){
+				var row = document.createElement("tr");
+				table.appendChild(row);
+				for(var j = 0; j < matrix[i].length; j++){
+					var cell = document.createElement("td");
+					row.appendChild(cell);
+					cell.textContent = matrix[i][j].toString()
+				}
 			}
 		}
-	}
-	printTable(items, document.getElementsByClassName("Table")[0]);
+		printTable(items, document.getElementsByClassName("Table")[0]);
 </script>
 
         <!--<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
