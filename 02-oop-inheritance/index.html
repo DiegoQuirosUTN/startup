@@ -73,6 +73,16 @@
     };
 
     this.eventList = new Map();
+
+    this.cast = [];
+
+    Movie.prototype.addCast = function(actor){
+        for(var i=0; i < arguments.length; i++){
+            this.cast.push(arguments[i]);
+        }
+
+    }
+
     Movie.prototype.play = function(){
         //console.log("playing");
         this.emit("play");
@@ -101,9 +111,35 @@
     }
     Logger.prototype.log = function(event){
         console.log("the " + event + " button has been pressed");
-    }
+        }
 
     var logger = new Logger();
+
+    function Social(){
+    }
+    Social.prototype.share = function(friendName){
+       console.log(`Shared ${this.getTitle()} with ${friendName}`);
+    }
+
+    Social.prototype.like = function(friendName){
+       console.log(`${friendName} liked ${this.getTitle()}`);
+    }
+
+    Movie.prototype = Object.assign(Movie.prototype,Social.prototype);
+
+    function Actor(varName, varAge){
+        this.name = varName;
+        this.age = varAge;
+    }
+
+    var jackBlack = new Actor("Jack Black", 42);
+
+    var jhonnyDeep = new Actor("Jhonny Deep", 50);
+
+    var syvester = new Actor("Sylvester Stallone", 55);
+
+    var arnold = new Actor("Arnold Schuartzenegger", 54);
+
 
     terminator.on("play", logger.log);
 
