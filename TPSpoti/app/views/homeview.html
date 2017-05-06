@@ -12,7 +12,7 @@
       </h4>
     </div>
     <div id="collapse{{$index}}" class="panel-collapse collapse">
-      <div class="panel-body"><img class="artistImg" src="{{art.images[0].url}}" alt="Artist Photo" height="100" width="100">{{art.genres}}</div>
+      <div class="panel-body"><img class="artistImg" src="{{art.images[0].url}}" alt="Artist Photo" height="100" width="100"><a ui-sref='artist({artistId: art.id, artistName: art.name})'>go to artist</a></div>
       <div class="panel-footer">{{art.popularity}}</div>
     </div>
   </div>

@@ -1,0 +1,23 @@
+<h1>{{test.title}}</h1>
+
+
+<div class="panel-group col-sm-4" ng-repeat="album in albums">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        	{{album.name}}
+      </h4>
+    </div>
+    
+      <div class="panel-body">
+      	<img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100">
+      </div>
+     
+    
+  </div>
+</div>
+
+<!--div id="collapseAlbum{{$index}}" class="panel-collapse collapse">
+      <div class="panel-body"><!--img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"--><!--a ui-sref='artist({artistId: art.id, artistName: art.name})'>go to artist</a--><!--/div>
+      <!--div class="panel-footer">{{art.popularity}}</div-->
+    

@@ -31,8 +31,19 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         })
         
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('about', {
-            // we'll get to this in a bit       
+        .state('artist', {
+            url: '/artist/:artistId/:artistName',
+            templateUrl: '/views/artistview.html',
+            controller: 'artistCtrl',
+            resolve:{
+      artistId: ['$stateParams', function($stateParams){
+          return $stateParams.artistId;
+      }],
+      artistName: ['$stateParams', function($stateParams){
+          return $stateParams.artistName;
+      }]
+   }
+    
         });
         
 });
