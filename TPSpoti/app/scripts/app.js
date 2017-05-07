@@ -44,6 +44,20 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       }]
    }
     
-        });
+        })
+		.state('album', {
+            url: '/album/:albumId/:albumName',
+            templateUrl: '/views/albumview.html',
+            controller: 'albumCtrl',
+            resolve:{
+      albumId: ['$stateParams', function($stateParams){
+          return $stateParams.albumId;
+      }],
+      albumName: ['$stateParams', function($stateParams){
+          return $stateParams.albumName;
+      }]
+   }
+        })
+        ;
         
 });

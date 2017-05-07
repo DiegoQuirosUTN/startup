@@ -1,0 +1,22 @@
+<h1>{{albumTitle}}</h1>
+
+<div class="panel-group col-sm-6" ng-repeat="song in songs">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        	{{song.name}}
+      </h4>
+    </div>
+    
+      <div class="panel-body">
+      	<!--img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"-->
+      	<audio controls>
+ 			 <source src="{{song.preview_url}}">
+  				
+			Your browser does not support the audio element.
+		</audio>
+      </div>
+     
+    
+  </div>
+</div>
