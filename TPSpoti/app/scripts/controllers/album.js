@@ -14,8 +14,12 @@ angular.module('spotiApp')
       'AngularJS',
       'Karma'
     ];
-    
+
     $scope.albumTitle = $stateParams.albumName;
+    $scope.getImg = function(){
+      if(album.images[0].url == null){return "/images/mrx.jpg";}
+      return album.images[0].url;
+    }
     //$scope.test.text = $stateParams.artistId;
     //$scope.test.title = $stateParams.artistName;
     //var artistUrl = `https://api.spotify.com/v1/artists/${$scope.test.text}/albums`

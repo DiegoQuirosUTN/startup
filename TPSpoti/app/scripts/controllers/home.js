@@ -18,6 +18,7 @@ angular.module('spotiApp')
     $scope.artist = {};
     $scope.lastSearch = "";
     $scope.artist.searchText = $stateParams.search;
+    
 	$scope.myFunc = function() {
 
         $scope.test = `https://api.spotify.com/v1/search?q=${$scope.artist.searchText}&type=artist`;
