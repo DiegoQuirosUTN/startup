@@ -1,5 +1,28 @@
-<h1>{{test.title}}</h1>
-
+<!--div class= "container row">
+	<div class = "col-md-4 inline">
+		<img src="{{artist.images[0].url}}" alt="Album Photo" height="200" width="200">
+	</div>
+	<div class= "col-md-4 inline">
+		<ul type= "none">
+			<li><h2>{{artist.name}}</h2></li>
+			<li>{{artist.genres[0]}}</li>
+		</ul>
+	</div>
+</div-->
+<div class= "container">
+	<div class = "row">
+	<div class = "col-sm-4">
+		<img class="titleImage" src="{{artist.images[0].url}}" alt="Album Photo">
+	</div>
+	<div class= "col-sm-6">
+		
+			<div class = "sectionTitle noOverflow">{{artist.name}}</div>
+			<div class ="noOverflow ">{{artist.genres[0]}}</div>
+		
+	</div>
+	</div>
+</div>
+<div ncy-breadcrumb class = "spacer"></div>
 
 <div class="panel-group col-sm-6" ng-repeat="album in albums">
   <div class="panel panel-default">

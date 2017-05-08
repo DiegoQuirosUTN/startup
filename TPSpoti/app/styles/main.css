@@ -74,6 +74,19 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.inline{
+  display: inline-block;
+}
+.titleImage {
+    height: 100px;
+    width: 100px;
+  }
+  .sectionTitle{
+    font-size: 16px;
+  }
+  .border{
+    border-style: dashed;
+  }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -95,5 +108,11 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
-  
+  .titleImage {
+    height: 200px;
+    width: 200px;
+  }
+  .sectionTitle{
+    font-size: 28px;
+  }
 }

@@ -1,4 +1,18 @@
-<h1>{{albumTitle}}</h1>
+<div class= "container">
+	<div class = "row">
+	<div class = "col-sm-4">
+		<img class="titleImage" src="{{album.images[0].url}}" alt="Album Photo">
+	</div>
+	<div class= "col-sm-6">
+		
+			<div class = "sectionTitle noOverflow">{{album.name}}</div>
+			<div class ="noOverflow ">{{album.artists[0].name}} - {{album.release_date.substring(0,4)}}</div>
+		
+	</div>
+	</div>
+</div>
+
+<div ncy-breadcrumb class="spacer"></div>
 
 <div class="panel-group col-sm-6" ng-repeat="song in songs" ng-controller="songCtrl">
   <div class="panel panel-default">

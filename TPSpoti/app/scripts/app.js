@@ -17,7 +17,8 @@ var myApp = angular
     'ngTouch',
     'ui.router',
     'LocalStorageModule',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ncy-angular-breadcrumb'
   ]);
 myApp.config(function($stateProvider, $urlRouterProvider) {
     
@@ -27,7 +28,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     	.state('front', {
             url: '/front',
             templateUrl: '/views/frontview.html',
-            controller: 'frontCtrl'
+            controller: 'frontCtrl',
+            ncyBreadcrumb: {
+   				label: 'Home'
+  			}
         })
         
         // HOME STATES AND NESTED VIEWS ========================================
@@ -35,6 +39,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/home/:search',
             templateUrl: '/views/homeview.html',
             controller: 'homeCtrl',
+            ncyBreadcrumb: {
+   				label: 'Search',
+   				parent: 'front'
+  			},
             resolve:{
       artistId: ['$stateParams', function($stateParams){
           return $stateParams.search;
@@ -44,29 +52,31 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('artist', {
-            url: '/artist/:artistId/:artistName',
+            url: '/artist/:artistId',
             templateUrl: '/views/artistview.html',
             controller: 'artistCtrl',
+            ncyBreadcrumb: {
+   				label: 'Artist',
+   				parent: 'home'
+  			},
             resolve:{
       artistId: ['$stateParams', function($stateParams){
           return $stateParams.artistId;
-      }],
-      artistName: ['$stateParams', function($stateParams){
-          return $stateParams.artistName;
       }]
    }
     
         })
 		.state('album', {
-            url: '/album/:albumId/:albumName',
+            url: '/album/:albumId',
             templateUrl: '/views/albumview.html',
             controller: 'albumCtrl',
+            ncyBreadcrumb: {
+   				label: 'Album',
+   				parent: 'artist'
+  			},
             resolve:{
       albumId: ['$stateParams', function($stateParams){
           return $stateParams.albumId;
-      }],
-      albumName: ['$stateParams', function($stateParams){
-          return $stateParams.albumName;
       }]
    }
         })
