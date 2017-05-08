@@ -15,19 +15,31 @@ var myApp = angular
     'ngResource',
     'ngSanitize',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'LocalStorageModule',
+    'ui.bootstrap'
   ]);
 myApp.config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/front');
     
     $stateProvider
+    	.state('front', {
+            url: '/front',
+            templateUrl: '/views/frontview.html',
+            controller: 'frontCtrl'
+        })
         
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
-            url: '/home',
+            url: '/home/:search',
             templateUrl: '/views/homeview.html',
-            controller: 'homeCtrl'
+            controller: 'homeCtrl',
+            resolve:{
+      artistId: ['$stateParams', function($stateParams){
+          return $stateParams.search;
+      }]
+   }
         })
         
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
@@ -59,5 +71,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
    }
         })
         ;
-        
+
+});
+myApp.config(function (localStorageServiceProvider) {
+  localStorageServiceProvider
+    .setPrefix('myApp')
+    .setStorageType('localStorage')
 });

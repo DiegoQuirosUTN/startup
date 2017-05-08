@@ -4,16 +4,16 @@
 </div>
 
 
-<div class="panel-group col-sm-4" ng-repeat="art in arts">
+<div class="panel-group col-sm-6" ng-repeat="art in arts">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse{{$index}}">{{art.name}}</a>
+        {{art.name}}
       </h4>
     </div>
-    <div id="collapse{{$index}}" class="panel-collapse collapse">
+    
       <div class="panel-body"><img class="artistImg" src="{{art.images[0].url}}" alt="Artist Photo" height="100" width="100"><a ui-sref='artist({artistId: art.id, artistName: art.name})'>go to artist</a></div>
       <div class="panel-footer">{{art.popularity}}</div>
-    </div>
+    
   </div>
 </div>
