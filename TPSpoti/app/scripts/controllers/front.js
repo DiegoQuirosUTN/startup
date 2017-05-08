@@ -19,7 +19,6 @@ angular.module('spotiApp')
     //$scope.test.text = $stateParams.artistId;
     //$scope.test.title = $stateParams.artistName;
     //var artistUrl = `https://api.spotify.com/v1/artists/${$scope.test.text}/albums`
-  
     
     var keys = localStorageService.keys();
     var urlIds = "";

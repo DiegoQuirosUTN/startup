@@ -1,5 +1,10 @@
 <div class="container">
-<div class="col-md-12">
+<div class="container">
+<p class="lead">welcome to</p>
+<h1>Spotisearch</h1>
+<h3><small>Search your favorite songs over spotify. Just enter an artist's name in the following search box and enjoy!</small></h3>
+</div>
+<div class="spacer container">
   <form class="form" role="search">
     <div class="input-group add-on">
       <input class="form-control" placeholder="Search" ng-model ="search" name="srch-term" id="srch-term" type="text">
@@ -9,8 +14,10 @@
     </div>
   </form>
 </div>
-
-<div class="panel-group col-sm-6" ng-repeat="favSong in favSongs">
+<div class="container spacer"><hr/></div>
+<h3 ng-hide="favSongs.length == 0">Favorite songs</h3>
+<div class="container spacer">
+<div class="panel-group col-sm-6" ng-repeat="favSong in favSongs" ng-controller = "favSongCtrl">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -19,10 +26,19 @@
     </div>
     
       <div class="panel-body">
+      	<audio controls>
+ 			 <source src="{{favSong.preview_url}}">
+  				
+			Your browser does not support the audio element.
+		</audio>
       	<!--img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"-->
+      	<button type="button" class="btn btn-danger" ng-model="favSongModel" uib-btn-checkbox ng-click= "deleteFav()">
+        <i class="glyphicon glyphicon-remove"></i>
+    	</button>
       </div>
      
     
   </div>
+</div>
 </div>
 </div>
