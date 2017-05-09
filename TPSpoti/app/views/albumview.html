@@ -14,7 +14,42 @@
 
 <div ncy-breadcrumb class="spacer"></div>
 
-<div class="panel-group col-sm-6" ng-repeat="song in songs" ng-controller="songCtrl">
+<div ng-repeat = "songs in cds" ng-controller="cdCtrl">
+<div class = container>
+<div class = 'row'>
+<p class= "col-sm-6">CD {{$index + 1}}</p> <p class="col-sm-6"><button type="button" class="btn btn-primary pushRight" ng-model="orderModel" uib-btn-checkbox ng-click= "orderSongs()">
+        Sort by duration
+    	</button></p>
+</div>
+</div>
+<div class="panel-group col-sm-12" ng-repeat="song in songs" ng-controller="songCtrl">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title noOverflow">
+        	{{song.name}}
+      </h4>
+    </div>
+    
+      <div class="panel-body noOverflow" >
+      	<!--img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"-->
+      	
+      	<audio controls>
+ 			 <source src="{{song.preview_url}}">
+  				
+			Your browser does not support the audio element.
+		</audio>
+		
+		<button type="button" class="btn btn-warning pushRight" ng-model="singleModel" uib-btn-checkbox ng-click= "checkFavs()">
+        <i class="glyphicon glyphicon-star"></i>
+    	</button>
+    	
+      </div>
+     
+    
+  </div>
+</div>
+</div>
+<!--div class="panel-group col-sm-6" ng-repeat="song in songs" ng-controller="songCtrl">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title noOverflow">
@@ -23,7 +58,6 @@
     </div>
     
       <div class="panel-body" >
-      	<!--img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"-->
       	
       	<audio controls>
  			 <source src="{{song.preview_url}}">
@@ -39,4 +73,4 @@
      
     
   </div>
-</div>
+</div-->

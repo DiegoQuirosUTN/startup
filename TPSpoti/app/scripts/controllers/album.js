@@ -8,7 +8,7 @@
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('albumCtrl', ['$scope', '$stateParams', '$http', function ($scope, $stateParams, $http) {
+  .controller('albumCtrl', ['$scope', '$stateParams', '$state', '$http', function ($scope, $stateParams,$state, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -46,10 +46,20 @@ angular.module('spotiApp')
 }).then(function successCallback(response) {
     // this callback will be called asynchronously
     // when the response is available
-    $scope.songs = response.data.items;
+    $scope.cds = getCDs(response.data.items);
     console.log(response.data.items);
   }, function errorCallback(response) {
     // called asynchronously if an error occurs
     // or server returns response with an error status.
   });
+var getCDs = function(tracks){
+  var cds = [];
+  for(var i=0; i < Math.max.apply(null, tracks.map(function(track){return track.disc_number;})); i++){
+    cds[i] = tracks.filter(function(track){return track.disc_number == (i + 1);});
+    console.log(cds[i]);
+  }
+  console.log(cds);
+  return cds;
+}
+console.log($state.$current.name)
 }]);
