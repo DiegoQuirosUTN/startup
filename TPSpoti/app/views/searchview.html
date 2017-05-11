@@ -1,0 +1,33 @@
+<div class= "container">
+	<h1>Artists</h1>
+	<h3><small>You are currently searching for: "{{artist.searchText}}"</small></h3>
+
+	<div class="form-group row">
+  		<input type="text" ng-model= "artist.searchText" ng-change="myFunc()" class="form-control" id="art">
+	</div>
+</div>
+
+<div ncy-breadcrumb></div>
+
+<div class="container spacer"><hr/></div>
+
+<div class= "container">
+	<div class="panel-group col-sm-6" ng-repeat="art in arts">
+  		<div class="panel panel-default">
+    		<div class="panel-heading">
+      			<h4 class="panel-title noOverflow">
+        			{{art.name}}
+      			</h4>
+    		</div>
+    
+      		<div class="panel-body">
+      			<img class="artistImg" ng-src="{{art.images[0].url}}" ng-hide ="art.images[0].url == null" alt="Artist Photo" height="100" width="100">
+      			<img class="artistImg" ng-src="/images/mrx.jpg" ng-hide ="!(art.images[0].url == null)" alt="Artist Photo" height="100" width="100">
+      			<a ui-sref='artist({artistId: art.id, artistName: art.name})'>go to artist</a>
+      		</div>
+      		<div class="panel-footer">
+      			{{art.popularity}}
+      		</div>
+  		</div>
+	</div>
+</div>

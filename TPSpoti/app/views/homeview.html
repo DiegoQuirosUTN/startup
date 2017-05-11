@@ -1,25 +1,39 @@
-<div class= "container">
-<h1>Artists</h1>
-<h3><small>You are currently searching for: "{{artist.searchText}}"</small></h3>
-
-<div class="form-group row">
-  <input type="text" ng-model= "artist.searchText" ng-change="myFunc()" class="form-control" id="art">
-</div>
-</div>
-<div ncy-breadcrumb></div>
-<div class="container spacer"><hr/></div>
-<div class= "container">
-<div class="panel-group col-sm-6" ng-repeat="art in arts">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title noOverflow">
-        {{art.name}}
-      </h4>
-    </div>
-    
-      <div class="panel-body"><img class="artistImg" ng-src="{{art.images[0].url}}" ng-hide ="art.images[0].url == null" alt="Artist Photo" height="100" width="100"><img class="artistImg" ng-src="/images/mrx.jpg" ng-hide ="!(art.images[0].url == null)" alt="Artist Photo" height="100" width="100"><a ui-sref='artist({artistId: art.id, artistName: art.name})'>go to artist</a></div>
-      <div class="panel-footer">{{art.popularity}}</div>
-    
-  </div>
-</div>
+<div class="container">
+	<div class="container">
+		<p class="lead">welcome to</p>
+		<h1>Spotisearch</h1>
+		<h3><small>Search your favorite songs over spotify. Just enter an artist's name in the following search box and enjoy!</small></h3>
+	</div>
+	<div class="spacer container">
+  		<form class="form" role="search"> <!-- Search Bar -->
+    		<div class="input-group add-on">
+      			<input class="form-control" placeholder="Search" ng-model ="search" name="srch-term" id="srch-term" type="text">
+      			<div class="input-group-btn">
+        			<button class="btn btn-default"  type="submit" ui-sref='search({search: search})' ><i class="glyphicon glyphicon-search"></i></button>
+      			</div>
+    		</div>
+  		</form>
+	</div>
+	<div class="container spacer"><hr/></div> 
+	<h3 ng-hide="favSongs.length == 0">Favorite songs</h3>
+	<div class="container spacer">
+		<div class="panel-group col-sm-6" ng-repeat="favSong in favSongs" ng-controller = "favSongCtrl"> <!-- loop for favorite songs-->
+  			<div class="panel panel-default">
+   				<div class="panel-heading">
+   					<h4 class="panel-title noOverflow">
+        				{{favSong.name}}
+      				</h4>
+    			</div>
+      			<div class="panel-body">
+      				<audio controls>
+ 			 			<source src="{{favSong.preview_url}}">
+  							Your browser does not support the audio element.
+					</audio>
+      				<button type="button" class="btn btn-danger" ng-model="favSongModel" uib-btn-checkbox ng-click= "deleteFav()">
+        				<i class="glyphicon glyphicon-remove"></i>
+    				</button>
+      			</div>   
+  			</div>
+		</div>
+	</div>
 </div>

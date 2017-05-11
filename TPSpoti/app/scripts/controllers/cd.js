@@ -14,19 +14,14 @@ angular.module('spotiApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.songs = $scope.songs.sort(function(a,b){return a.name.localeCompare(b.name);});
+    $scope.songs = $scope.songs.sort(function(a,b){return a.name.localeCompare(b.name);}); //order by name
     
     $scope.orderSongs = function(){
     	if($scope.orderModel){
-    		$scope.songs = $scope.songs.sort(function(a,b){return a.duration_ms - b.duration_ms});
+    		$scope.songs = $scope.songs.sort(function(a,b){return a.duration_ms - b.duration_ms}); //order by duration
     	}
     	else{
-    		$scope.songs = $scope.songs.sort(function(a,b){return a.name.localeCompare(b.name);});
+    		$scope.songs = $scope.songs.sort(function(a,b){return a.name.localeCompare(b.name);}); //order by name
     	}
-    }
-    //$scope.test.text = $stateParams.artistId;
-    //$scope.test.title = $stateParams.artistName;
-    //var artistUrl = `https://api.spotify.com/v1/artists/${$scope.test.text}/albums`
-  
-    
+    }  
 }]);

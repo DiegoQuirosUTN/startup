@@ -1,76 +1,43 @@
+
 <div class= "container">
 	<div class = "row">
-	<div class = "col-sm-4">
-		<img class="titleImage" src="{{album.images[0].url}}" alt="Album Photo">
-	</div>
-	<div class= "col-sm-6">
-		
+		<div class = "col-sm-4">
+			<img class="titleImage" src="{{album.images[0].url}}" alt="Album Photo">
+		</div>
+		<div class= "col-sm-6">
 			<div class = "sectionTitle noOverflow">{{album.name}}</div>
 			<div class ="noOverflow ">{{album.artists[0].name}} - {{album.release_date.substring(0,4)}}</div>
-		
-	</div>
+		</div>
 	</div>
 </div>
 
 <div ncy-breadcrumb class="spacer"></div>
 
-<div ng-repeat = "songs in cds" ng-controller="cdCtrl">
-<div class = container>
-<div class = 'row'>
-<p class= "col-sm-6">CD {{$index + 1}}</p> <p class="col-sm-6"><button type="button" class="btn btn-primary pushRight" ng-model="orderModel" uib-btn-checkbox ng-click= "orderSongs()">
-        Sort by duration
-    	</button></p>
-</div>
-</div>
-<div class="panel-group col-sm-12" ng-repeat="song in songs" ng-controller="songCtrl">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title noOverflow">
-        	{{song.name}}
-      </h4>
-    </div>
+
+<div ng-repeat = "songs in cds" ng-controller="cdCtrl"><!--loop for every CD in the album-->
+	<div class = container>
+		<div class = 'row'>
+			<p class= "col-sm-6">CD {{$index + 1}}</p> 
+			<p class="col-sm-6"><button type="button" class="btn btn-primary pushRight" ng-model="orderModel" uib-btn-checkbox ng-click= "orderSongs()">Sort by duration</button></p>
+		</div>
+	</div>
+	<div class="panel-group col-sm-12" ng-repeat="song in songs" ng-controller="songCtrl"><!--loop for every track in the CD-->
+  		<div class="panel panel-default">
+    		<div class="panel-heading">
+      			<h4 class="panel-title noOverflow">
+        			{{song.name}}
+      			</h4>
+    		</div>
     
-      <div class="panel-body noOverflow" >
-      	<!--img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"-->
-      	
-      	<audio controls>
- 			 <source src="{{song.preview_url}}">
-  				
-			Your browser does not support the audio element.
-		</audio>
-		
-		<button type="button" class="btn btn-warning pushRight" ng-model="singleModel" uib-btn-checkbox ng-click= "checkFavs()">
-        <i class="glyphicon glyphicon-star"></i>
-    	</button>
-    	
-      </div>
-     
-    
-  </div>
+      		<div class="panel-body noOverflow" >  	
+      			<audio controls>
+ 			 		<source src="{{song.preview_url}}">
+  					Your browser does not support the audio element.
+				</audio>	
+				<button type="button" class="btn btn-warning pushRight" ng-model="favoriteModel" uib-btn-checkbox ng-click= "checkFavs()">
+        			<i class="glyphicon glyphicon-star"></i>
+    			</button>
+      		</div>
+  		</div>
+	</div>
 </div>
-</div>
-<!--div class="panel-group col-sm-6" ng-repeat="song in songs" ng-controller="songCtrl">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title noOverflow">
-        	{{song.name}}
-      </h4>
-    </div>
-    
-      <div class="panel-body" >
-      	
-      	<audio controls>
- 			 <source src="{{song.preview_url}}">
-  				
-			Your browser does not support the audio element.
-		</audio>
-		
-		<button type="button" class="btn btn-warning" ng-model="singleModel" uib-btn-checkbox ng-click= "checkFavs()">
-        <i class="glyphicon glyphicon-star"></i>
-    	</button>
-    	
-      </div>
-     
-    
-  </div>
-</div-->

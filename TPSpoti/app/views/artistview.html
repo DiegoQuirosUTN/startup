@@ -1,27 +1,15 @@
-<!--div class= "container row">
-	<div class = "col-md-4 inline">
-		<img src="{{artist.images[0].url}}" alt="Album Photo" height="200" width="200">
-	</div>
-	<div class= "col-md-4 inline">
-		<ul type= "none">
-			<li><h2>{{artist.name}}</h2></li>
-			<li>{{artist.genres[0]}}</li>
-		</ul>
-	</div>
-</div-->
 <div class= "container">
 	<div class = "row">
-	<div class = "col-sm-4">
-		<img class="titleImage" src="{{artist.images[0].url}}" alt="Album Photo">
-	</div>
-	<div class= "col-sm-6">
-		
+		<div class = "col-sm-4">
+			<img class="titleImage" ng-src="{{artist.images[0].url}}" ng-hide ="artist.images[0].url == null" alt="Artist Photo" ><img class="titleImage" ng-src="/images/mrx.jpg" ng-hide ="!(artist.images[0].url == null)" alt="Artist Photo">
+		</div>
+		<div class= "col-sm-6">
 			<div class = "sectionTitle noOverflow">{{artist.name}}</div>
-			<div class ="noOverflow ">{{artist.genres[0]}}</div>
-		
-	</div>
+			<div class ="noOverflow ">{{artist.genres[0]}}</div>	
+		</div>
 	</div>
 </div>
+
 <div ncy-breadcrumb class = "spacer"></div>
 
 <div class="panel-group col-sm-6" ng-repeat="album in albums">
@@ -31,16 +19,11 @@
         	{{album.name}}
       </h4>
     </div>
-    
       <div class="panel-body">
       	<img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"><a ui-sref='album({albumId: album.id, albumName: album.name})'>Ver album</a>
       </div>
-     
-    
   </div>
 </div>
 
-<!--div id="collapseAlbum{{$index}}" class="panel-collapse collapse">
-      <div class="panel-body"><!--img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"--><!--a ui-sref='artist({artistId: art.id, artistName: art.name})'>go to artist</a--><!--/div>
-      <!--div class="panel-footer">{{art.popularity}}</div-->
+
     

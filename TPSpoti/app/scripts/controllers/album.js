@@ -8,58 +8,52 @@
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('albumCtrl', ['$scope', '$stateParams', '$state', '$http', function ($scope, $stateParams,$state, $http) {
+  .controller('albumCtrl', ['$scope', '$stateParams', '$state', 'breadCrumbService', '$http', function ($scope, $stateParams, $state, breadCrumbService, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+    $scope.fromArtistId = breadCrumbService.serv();
+
     var albumUrl = `https://api.spotify.com/v1/albums/${$stateParams.albumId}`
 
     $http({
-  method: 'GET',
-  url: albumUrl
-}).then(function successCallback(response) {
-    // this callback will be called asynchronously
-    // when the response is available
-    $scope.album = response.data;
-    console.log(response.data);
-    
-  }, function errorCallback(response) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });
+      method: 'GET',
+      url: albumUrl
+    }).then(function successCallback(response) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.album = response.data;
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
 
     $scope.albumTitle = $stateParams.albumName;
-    $scope.getImg = function(){
-      if(album.images[0].url == null){return "/images/mrx.jpg";}
-      return album.images[0].url;
-    }
-    //$scope.test.text = $stateParams.artistId;
-    //$scope.test.title = $stateParams.artistName;
-    //var artistUrl = `https://api.spotify.com/v1/artists/${$scope.test.text}/albums`
+
     var albumTracksUrl = `https://api.spotify.com/v1/albums/${$stateParams.albumId}/tracks`;
+
     $http({
-  method: 'GET',
-  url: albumTracksUrl
-}).then(function successCallback(response) {
-    // this callback will be called asynchronously
-    // when the response is available
-    $scope.cds = getCDs(response.data.items);
-    console.log(response.data.items);
-  }, function errorCallback(response) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });
-var getCDs = function(tracks){
-  var cds = [];
-  for(var i=0; i < Math.max.apply(null, tracks.map(function(track){return track.disc_number;})); i++){
-    cds[i] = tracks.filter(function(track){return track.disc_number == (i + 1);});
-    console.log(cds[i]);
-  }
-  console.log(cds);
-  return cds;
-}
-console.log($state.$current.name)
+      method: 'GET',
+      url: albumTracksUrl
+    }).then(function successCallback(response) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.cds = getCDs(response.data.items);
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+
+
+    var getCDs = function(tracks){     //returns an array of CDs, each CD is an array of tracks
+      var cds = [];
+      for(var i=0; i < Math.max.apply(null, tracks.map(function(track){return track.disc_number;})); i++){
+        cds[i] = tracks.filter(function(track){return track.disc_number == (i + 1);});
+      }
+      return cds;
+    }
+    
 }]);

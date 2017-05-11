@@ -22,50 +22,50 @@ var myApp = angular
   ]);
 myApp.config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/front');
+    $urlRouterProvider.otherwise('/home');
     
     $stateProvider
-    	.state('front', {
-            url: '/front',
-            templateUrl: '/views/frontview.html',
-            controller: 'frontCtrl',
-            ncyBreadcrumb: {
-   				label: 'Home'
-  			}
-        })
-        
-        // HOME STATES AND NESTED VIEWS ========================================
-        .state('home', {
-            url: '/home/:search',
+    	.state('home', {
+            url: '/home',
             templateUrl: '/views/homeview.html',
             controller: 'homeCtrl',
             ncyBreadcrumb: {
-   				label: 'Search',
-   				parent: 'front'
-  			},
-            resolve:{
-      artistId: ['$stateParams', function($stateParams){
-          return $stateParams.search;
-      }]
-   }
+   				label: 'Home '
+  			}
         })
         
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+       
+        .state('search', {
+            url: '/search/:search',
+            templateUrl: '/views/searchview.html',
+            controller: 'searchCtrl',
+            ncyBreadcrumb: {
+   				label: 'Search',
+   				parent: 'home'
+  			},
+            resolve:{
+     		 	artistId: ['$stateParams', function($stateParams){
+          			return $stateParams.search;
+      			}]
+   			}
+        })
+        
+      
         .state('artist', {
             url: '/artist/:artistId',
             templateUrl: '/views/artistview.html',
             controller: 'artistCtrl',
             ncyBreadcrumb: {
-   				label: 'Artist',
-   				parent: 'home'
+   				label: 'artist',
+   				parent: "search({search: ''})"
   			},
             resolve:{
-      artistId: ['$stateParams', function($stateParams){
-          return $stateParams.artistId;
-      }]
-   }
-    
+      			artistId: ['$stateParams', function($stateParams){
+          			return $stateParams.artistId;
+      			}]
+   			}
         })
+
 		.state('album', {
             url: '/album/:albumId',
             templateUrl: '/views/albumview.html',
@@ -75,16 +75,24 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
    				parent: 'artist'
   			},
             resolve:{
-      albumId: ['$stateParams', function($stateParams){
-          return $stateParams.albumId;
-      }]
-   }
+      			albumId: ['$stateParams', function($stateParams){
+          			return $stateParams.albumId;
+      			}]
+   			}
         })
         ;
 
 });
+
 myApp.config(function (localStorageServiceProvider) {
   localStorageServiceProvider
     .setPrefix('myApp')
     .setStorageType('localStorage')
 });
+
+myApp.config(function($breadcrumbProvider) {
+    $breadcrumbProvider.setOptions({
+      prefixStateName: 'home',
+      template: 'bootstrap2'
+    });
+})

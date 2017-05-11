@@ -2,50 +2,42 @@
 
 /**
  * @ngdoc function
- * @name spotiApp.controller:HomeCtrl
+ * @name spotiApp.controller:homeCtrl
  * @description
- * # HomeCtrl
+ * # homeCtrl
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('homeCtrl', ['$scope', '$stateParams','$http', function ($scope, $stateParams, $http) {
+  .controller('homeCtrl', ['$scope', '$stateParams', 'localStorageService', '$http', function ($scope, $stateParams, localStorageService, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.test = "";
-    $scope.artist = {};
-    $scope.lastSearch = "";
-    $scope.artist.searchText = $stateParams.search;
     
-	$scope.myFunc = function() {
+    $scope.favSongs = [];
+    
+    var keys = localStorageService.keys();
 
-        $scope.test = `https://api.spotify.com/v1/search?q=${$scope.artist.searchText}&type=artist`;
-        $http({
-  		method: 'GET',
-  		url: $scope.test
-			}).then(function successCallback(response) {
-    		// this callback will be called asynchronously
-    		// when the response is available
-    			$scope.arts = response.data.artists.items;
-  			}, function errorCallback(response) {
-    		// called asynchronously if an error occurs
-    		// or server returns response with an error status.
-  			});
-    };
-    var searchUrl = `https://api.spotify.com/v1/search?q=${$stateParams.search}&type=artist`;
-    //$scope.test = $scope.artist.searchText;
-     $http({
-  method: 'GET',
-  url: searchUrl
-}).then(function successCallback(response) {
-    // this callback will be called asynchronously
-    // when the response is available
-    $scope.arts = response.data.artists.items;
-  }, function errorCallback(response) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });
+    //joins track IDs to insert in the request
+    var urlIds = "";
+    keys.forEach(function(key){
+      urlIds = urlIds + ","+key;
+    })
+    urlIds = urlIds.slice(1,urlIds.lenght);
+    //
 
-  }]);
+    var urlReq = `https://api.spotify.com/v1/tracks/?ids=${urlIds}`
+    $http({
+      method: 'GET',
+      url: urlReq
+    }).then(function successCallback(response) {
+      // this callback will be called asynchronously
+      // when the response is available
+      $scope.favSongs = response.data.tracks;
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+    
+}]);

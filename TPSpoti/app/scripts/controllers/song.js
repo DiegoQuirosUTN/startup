@@ -14,20 +14,16 @@ angular.module('spotiApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.singleModel = localStorageService.keys().includes($scope.song.id);
-    console.log($scope.song.id);
+
+    $scope.favoriteModel = localStorageService.keys().includes($scope.song.id);
+
     $scope.checkFavs = function(){
-    	if($scope.singleModel){
+    	if($scope.favoriteModel){
     		localStorageService.set($scope.song.id, $scope.song);
     	}
     	else{
     		localStorageService.remove($scope.song.id);
     	}
-    console.log(localStorageService.get($scope.song.id));
     }
-    //$scope.test.text = $stateParams.artistId;
-    //$scope.test.title = $stateParams.artistName;
-    //var artistUrl = `https://api.spotify.com/v1/artists/${$scope.test.text}/albums`
-  
     
 }]);
