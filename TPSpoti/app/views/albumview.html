@@ -11,8 +11,17 @@
 	</div>
 </div>
 
-<div ncy-breadcrumb class="spacer"></div>
+<!--div ncy-breadcrumb class="spacer"></div-->
+<div class = "container">
+	<h5>
+		<a  ui-sref = 'home'><span class = "label label-info">Home</span></a> > 
+		<a ui-sref = "search({search: ''})" ><span class = "label label-info">Search</span></a> > 
+		<a ui-sref = "artist({artistId: album.artists[0].id})"><span class = "label label-info">{{album.artists[0].name}}</span></a> > 
+		<span class = "label label-default">{{album.name}}</span> 
+	</h5> 
+</div>
 
+<div class="container spacer"><hr/></div>
 
 <div ng-repeat = "songs in cds" ng-controller="cdCtrl"><!--loop for every CD in the album-->
 	<div class = container>
