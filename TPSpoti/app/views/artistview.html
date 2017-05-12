@@ -24,11 +24,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title noOverflow">
-        	{{album.name}}
+        	<strong>{{album.name}}</strong>
       </h4>
     </div>
       <div class="panel-body">
-      	<img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100"><a ui-sref='album({albumId: album.id, albumName: album.name})'>Ver album</a>
+      	<img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100">
+      	<a ui-sref='album({albumId: album.id, albumName: album.name})'><button type= "button" class = "btn btn-info btn-sm spaceLeft">Ver album</button></a>
       </div>
   </div>
 </div>

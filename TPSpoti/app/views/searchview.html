@@ -22,17 +22,17 @@
   		<div class="panel panel-default">
     		<div class="panel-heading">
       			<h4 class="panel-title noOverflow">
-        			{{art.name}}
+        			<strong>{{art.name}}</strong>
       			</h4>
     		</div>
     
       		<div class="panel-body">
-      			<img class="artistImg" ng-src="{{art.images[0].url}}" ng-hide ="art.images[0].url == null" alt="Artist Photo" height="100" width="100">
-      			<img class="artistImg" ng-src="/images/mrx.jpg" ng-hide ="!(art.images[0].url == null)" alt="Artist Photo" height="100" width="100">
-      			<a ui-sref='artist({artistId: art.id, artistName: art.name})'>go to artist</a>
+      			   <img class="artistImg" ng-src="{{art.images[0].url}}" ng-hide ="art.images[0].url == null" alt="Artist Photo" height="100" width="100">
+      			   <img class="artistImg" ng-src="/images/mrx.jpg" ng-hide ="!(art.images[0].url == null)" alt="Artist Photo" height="100" width="100">
+      			   <a ui-sref='artist({artistId: art.id})'><button type= "button" class = "btn btn-info btn-sm spaceLeft">go to artist</button></a>
       		</div>
       		<div class="panel-footer">
-      			{{art.popularity}}
+      			Popularity: {{art.popularity}}
       		</div>
   		</div>
 	</div>

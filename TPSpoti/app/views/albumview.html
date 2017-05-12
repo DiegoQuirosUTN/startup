@@ -26,7 +26,7 @@
 <div ng-repeat = "songs in cds" ng-controller="cdCtrl"><!--loop for every CD in the album-->
 	<div class = container>
 		<div class = 'row'>
-			<p class= "col-sm-6">CD {{$index + 1}}</p> 
+			<p class= "col-sm-6"><strong>CD {{$index + 1}}</strong></p> 
 			<p class="col-sm-6"><button type="button" class="btn btn-primary pushRight" ng-model="orderModel" uib-btn-checkbox ng-click= "orderSongs()">Sort by duration</button></p>
 		</div>
 	</div>
