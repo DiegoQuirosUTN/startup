@@ -8,7 +8,7 @@
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('artistCtrl', ['$scope', '$stateParams','$breadcrumb', 'breadCrumbService', '$state', '$http', function ($scope, $stateParams, $breadcrumb, breadCrumbService, $state, $http) {
+  .controller('artistCtrl', ['$scope', '$stateParams','$breadcrumb', 'breadCrumbService', '$state', '$http', 'requestFactory', function ($scope, $stateParams, $breadcrumb, breadCrumbService, $state, $http, requestFactory) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -18,11 +18,8 @@ angular.module('spotiApp')
     $scope.artist.name = "";
     
     
-   	var artistUrl = `https://api.spotify.com/v1/artists/${$stateParams.artistId}`;
-    $http({
-  		method: 'GET',
-  		url: artistUrl
-	}).then(function successCallback(response) {
+   	requestFactory.getArtist($stateParams.artistId)
+   	.then(function successCallback(response) {
     	// this callback will be called asynchronously
     	// when the response is available
     	$scope.artist = response.data;
@@ -31,13 +28,10 @@ angular.module('spotiApp')
     	// or server returns response with an error status.
   	});
 
-  	breadCrumbService.serv(1, $stateParams.artistId);
+  	
 
-    var artistAlbumsUrl = `https://api.spotify.com/v1/artists/${$stateParams.artistId}/albums`
-    $http({
-  		method: 'GET',
-  		url: artistAlbumsUrl
-	}).then(function successCallback(response) {
+    requestFactory.getArtistAlbums($stateParams.artistId)
+    .then(function successCallback(response) {
     	// this callback will be called asynchronously
     	// when the response is available
     	$scope.albums = response.data.items;
