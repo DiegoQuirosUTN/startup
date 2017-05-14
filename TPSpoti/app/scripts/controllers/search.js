@@ -8,7 +8,7 @@
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('searchCtrl', ['$scope', '$stateParams', 'requestFactory', '$http', function ($scope, $stateParams, requestFactory, $http) {
+  .controller('searchCtrl', ['$scope', '$stateParams', 'requestFactory', '$http', '$timeout', function ($scope, $stateParams, requestFactory, $http, $timeout) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,7 +19,8 @@ angular.module('spotiApp')
     $scope.artist.searchText = $stateParams.search;
 
 	$scope.myFunc = function() {
-
+      $timeout.cancel($scope.searchPromise);
+      $scope.searchPromise = $timeout( function(){
         requestFactory.getArtists($scope.artist.searchText)
 			   .then(function successCallback(response) {
     		// this callback will be called asynchronously
@@ -28,7 +29,9 @@ angular.module('spotiApp')
   			}, function errorCallback(response) {
     		// called asynchronously if an error occurs
     		// or server returns response with an error status.
-  			});
+        })
+  			
+        }, 1000);
     };
     /*var searchUrl = `https://api.spotify.com/v1/search?q=${$stateParams.search}&type=artist`;
     //$scope.test = $scope.artist.searchText;
