@@ -17,16 +17,18 @@
 
 <div class="container spacer"><hr/></div>
 
-<panel ng-repeat="art in arts">
-  <panel-title>
-  {{art.name}}
-  </panel-title>
-  <panel-body>
-    <img class="artistImg" ng-src="{{art.images[0].url}}" ng-hide ="art.images[0].url == null" alt="Artist Photo" height="100" width="100">
-    <img class="artistImg" ng-src="/images/mrx.jpg" ng-hide ="!(art.images[0].url == null)" alt="Artist Photo" height="100" width="100">
-    <a ui-sref='artist({artistId: art.id})'><button type= "button" class = "btn btn-info btn-sm spaceLeft">go to artist</button></a>
-  </panel-body>
-  <panel-footer>
-    Popularity: {{art.popularity}}
-  </panel-footer>
-</panel>
+<div class= "container spacer">
+  <panel ng-repeat="art in arts" class = "col-sm-6">
+    <panel-title>
+      {{art.name}}
+    </panel-title>
+    <panel-body>
+      <img class="artistImg" ng-src="{{art.images[0].url}}" ng-hide ="art.images[0].url == null" alt="Artist Photo" height="100" width="100">
+      <img class="artistImg" ng-src="/images/mrx.jpg" ng-hide ="!(art.images[0].url == null)" alt="Artist Photo" height="100" width="100">
+      <a ui-sref='artist({artistId: art.id})'><button type= "button" class = "btn btn-info btn-sm spaceLeft">go to artist</button></a>
+    </panel-body>
+    <panel-footer>
+     Popularity: {{art.popularity}}
+    </panel-footer>
+  </panel>
+</div>

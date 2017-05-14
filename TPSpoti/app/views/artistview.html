@@ -20,16 +20,18 @@
 <!--div ncy-breadcrumb class = "spacer"></div-->
 <div class="container spacer"><hr/></div>
 
-<panel ng-repeat="album in albums">
-  	<panel-title>
-  		{{album.name}}
-  	</panel-title>
-  	<panel-body>
-    	<img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100">
-    	<a ui-sref='album({albumId: album.id, albumName: album.name})'><button type= "button" class = "btn btn-info btn-sm spaceLeft">Ver album</button></a>
-  	</panel-body>
-	<panel-footer>
- 	</panel-footer>
-</panel>
+<div class= "container spacer">
+	<panel ng-repeat="album in albums" class = "col-sm-6">
+  		<panel-title>
+  			{{album.name}}
+  		</panel-title>
+  		<panel-body>
+    		<img class="artistImg" src="{{album.images[0].url}}" alt="Album Photo" height="100" width="100">
+    		<a ui-sref='album({albumId: album.id, albumName: album.name})'><button type= "button" class = "btn btn-info btn-sm spaceLeft">Ver album</button></a>
+  		</panel-body>
+		<panel-footer>
+ 		</panel-footer>
+	</panel>
+</div>
 
 

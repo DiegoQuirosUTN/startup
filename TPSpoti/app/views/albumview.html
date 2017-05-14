@@ -30,23 +30,21 @@
 			<p class="col-sm-6"><button type="button" class="btn btn-primary pushRight" ng-model="orderModel" uib-btn-checkbox ng-click= "orderSongs()">Sort by duration</button></p>
 		</div>
 	</div>
-	<div class="panel-group col-sm-12" ng-repeat="song in songs" ng-controller="songCtrl"><!--loop for every track in the CD-->
-  		<div class="panel panel-default">
-    		<div class="panel-heading">
-      			<h4 class="panel-title noOverflow">
-        			{{song.name}}
-      			</h4>
-    		</div>
-    
-      		<div class="panel-body noOverflow" >  	
-      			<audio controls>
- 			 		<source src="{{song.preview_url}}">
+	 	<panel ng-repeat="song in songs" class = "col-sm-12">
+    		<panel-title>
+      			{{song.name}}
+    		</panel-title>
+    		<panel-body>
+    			<audio controls>
+      			<source src="{{song.preview_url}}">
   					Your browser does not support the audio element.
 				</audio>	
 				<button type="button" class="btn btn-warning pushRight" ng-model="favoriteModel" uib-btn-checkbox ng-click= "checkFavs()">
         			<i class="glyphicon glyphicon-star"></i>
     			</button>
-      		</div>
-  		</div>
-	</div>
+    		</panel-body>
+    		<panel-footer>
+    		</panel-footer>
+  		</panel>
 </div>
+
