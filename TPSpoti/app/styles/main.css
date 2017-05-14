@@ -93,6 +93,9 @@ body {
   .spaceLeft{
     margin-left: 20%;
   }
+  .bread{
+    line-height: 20px;
+  }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
