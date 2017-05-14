@@ -1,3 +1,4 @@
+(function(){
 'use strict';
 
 /**
@@ -8,7 +9,7 @@
  *
  * Main module of the application.
  */
-var myApp = angular
+angular
   .module('spotiApp', [
     'ngAnimate',
     'ngCookies',
@@ -19,8 +20,8 @@ var myApp = angular
     'LocalStorageModule',
     'ui.bootstrap',
     'ncy-angular-breadcrumb'
-  ]);
-myApp.config(function($stateProvider, $urlRouterProvider) {
+  ])
+.config(function($stateProvider, $urlRouterProvider) {
     
     $urlRouterProvider.otherwise('/home');
     
@@ -82,17 +83,12 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         })
         ;
 
-});
+})
 
-myApp.config(function (localStorageServiceProvider) {
+.config(function (localStorageServiceProvider) {
   localStorageServiceProvider
     .setPrefix('myApp')
     .setStorageType('localStorage')
 });
 
-myApp.config(function($breadcrumbProvider) {
-    $breadcrumbProvider.setOptions({
-      prefixStateName: 'home',
-      template: 'bootstrap2'
-    });
-})
+})();

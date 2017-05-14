@@ -25,7 +25,7 @@ angular.module('spotiApp')
     .then(function successCallback(response) {
       // this callback will be called asynchronously
       // when the response is available
-      console.log(response.data);
+      
       $scope.favSongs = response.data.tracks;
     }, function errorCallback(response) {
       // called asynchronously if an error occurs
