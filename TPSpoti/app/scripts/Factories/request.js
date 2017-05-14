@@ -1,3 +1,5 @@
+(function(){
+
 angular.module('spotiApp')
     .factory('requestFactory', ['$http', function($http) {
 
@@ -44,3 +46,4 @@ angular.module('spotiApp')
 
     return requestFactory;
 }]);
+})();

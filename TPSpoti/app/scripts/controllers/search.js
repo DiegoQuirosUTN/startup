@@ -1,3 +1,4 @@
+(function(){
 'use strict';
 
 /**
@@ -50,3 +51,4 @@ angular.module('spotiApp')
   });
 
   }]);
+})();

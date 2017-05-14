@@ -1,3 +1,4 @@
+(function(){
 'use strict';
 
 /**
@@ -40,3 +41,4 @@ angular.module('spotiApp')
     	// or server returns response with an error status.
   	});
 }]);
+})();

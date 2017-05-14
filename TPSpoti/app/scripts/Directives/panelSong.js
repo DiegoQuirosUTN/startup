@@ -1,3 +1,5 @@
+(function(){
+
 angular.module('spotiApp')
  .directive('panelSong', function() {
     
@@ -19,3 +21,4 @@ angular.module('spotiApp')
                 '</div>'*/
     };
 })
+})();
