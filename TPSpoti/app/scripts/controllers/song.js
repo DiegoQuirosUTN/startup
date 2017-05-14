@@ -16,14 +16,15 @@ angular.module('spotiApp')
     ];
 
     $scope.favoriteModel = localStorageService.keys().includes($scope.song.id);
-
     $scope.checkFavs = function(){
+    	$scope.favoriteModel = !($scope.favoriteModel);
     	if($scope.favoriteModel){
     		localStorageService.set($scope.song.id, $scope.song);
     	}
     	else{
     		localStorageService.remove($scope.song.id);
     	}
+   
     }
     
 }]);

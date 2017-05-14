@@ -30,7 +30,8 @@
 			<p class="col-sm-6"><button type="button" class="btn btn-primary pushRight" ng-model="orderModel" uib-btn-checkbox ng-click= "orderSongs()">Sort by duration</button></p>
 		</div>
 	</div>
-	 	<panel ng-repeat="song in songs" class = "col-sm-12">
+	<div>
+	 	<panel-song ng-repeat="song in songs" class = "col-sm-12" >
     		<panel-title>
       			{{song.name}}
     		</panel-title>
@@ -45,6 +46,7 @@
     		</panel-body>
     		<panel-footer>
     		</panel-footer>
-  		</panel>
+  		</panel-song>
+  	</div>
 </div>
 

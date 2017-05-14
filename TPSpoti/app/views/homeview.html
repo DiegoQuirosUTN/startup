@@ -18,7 +18,7 @@
 	<h3 ng-hide="favSongs.length == 0">Favorite songs</h3>
 
 <div class= "container spacer">
-	<panel ng-repeat="favSong in favSongs" class = "col-sm-6">
+	<panel-fav-song ng-repeat="favSong in favSongs" class = "col-sm-6"  >
     <panel-title>
       {{favSong.name}}
     </panel-title>
@@ -33,7 +33,7 @@
     </panel-body>
     <panel-footer>
     </panel-footer>
-  </panel>
+  </panel-fav-song>
 </div>
 
 

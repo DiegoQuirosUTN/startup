@@ -8,7 +8,7 @@
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('albumCtrl', ['$scope', '$stateParams', '$state', 'breadCrumbService', '$http', 'requestFactory', function ($scope, $stateParams, $state, breadCrumbService, $http, requestFactory) {
+  .controller('albumCtrl', ['$scope', '$stateParams', '$state', 'breadCrumbService', '$http', 'requestFactory', 'localStorageService', function ($scope, $stateParams, $state, breadCrumbService, $http, requestFactory, localStorageService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
