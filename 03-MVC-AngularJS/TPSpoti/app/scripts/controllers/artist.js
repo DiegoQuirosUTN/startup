@@ -3,13 +3,13 @@
 
 /**
  * @ngdoc function
- * @name spotiApp.controller:HomeCtrl
+ * @name spotiApp.controller:artistCtrl
  * @description
  * # artistCtrl
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('artistCtrl', ['$scope', '$stateParams','$breadcrumb', 'breadCrumbService', '$state', '$http', 'requestFactory', function ($scope, $stateParams, $breadcrumb, breadCrumbService, $state, $http, requestFactory) {
+  .controller('artistCtrl', ['$scope', '$stateParams', '$state', '$http', 'requestFactory', function ($scope, $stateParams, $state, $http, requestFactory) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -27,6 +27,7 @@ angular.module('spotiApp')
   	}, function errorCallback(response) {
     	// called asynchronously if an error occurs
     	// or server returns response with an error status.
+      // Do nothing.
   	});
 
   	
@@ -39,6 +40,7 @@ angular.module('spotiApp')
   	}, function errorCallback(response) {
     	// called asynchronously if an error occurs
     	// or server returns response with an error status.
+      // Do nothing.
   	});
 }]);
 })();

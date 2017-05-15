@@ -9,7 +9,7 @@
  * Controller of the spotiApp
  */
 angular.module('spotiApp')
-  .controller('albumCtrl', ['$scope', '$stateParams', '$state', 'breadCrumbService', '$http', 'requestFactory', 'localStorageService', function ($scope, $stateParams, $state, breadCrumbService, $http, requestFactory, localStorageService) {
+  .controller('albumCtrl', ['$scope', '$stateParams', '$state', '$http', 'requestFactory', 'localStorageService', function ($scope, $stateParams, $state, $http, requestFactory, localStorageService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -26,6 +26,7 @@ angular.module('spotiApp')
     }, function errorCallback(response) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
+      // Do nothing.
     });
 
     requestFactory.getAlbumTracks($stateParams.albumId)
@@ -36,6 +37,7 @@ angular.module('spotiApp')
     }, function errorCallback(response) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
+      // Do nothing.
     });
 
 
